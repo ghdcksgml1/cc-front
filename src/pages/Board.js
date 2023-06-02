@@ -5,6 +5,7 @@ import BoardHead from "../component/Board/BoardHead";
 import BoardSelector from "../component/Board/BoardSelector";
 import styled from "styled-components";
 import BoardMenuBar from "../component/Board/BoardMenuBar";
+import CommunityList from "../component/Board/Community/CommunityList";
 
 
 
@@ -52,8 +53,14 @@ function Board() {
                 <BoardSelector/>
             </DivBox>
             <BoardBoard>
-                {selectedItem ? <BoardHead name={`병원 리뷰`} email={`병원 리뷰를 적는 공간입니다.`}></BoardHead>
-                : <BoardHead name={`자유 게시판`} email={`자유롭게 소통하는 게시판입니다.`}></BoardHead>}
+                {selectedItem ?
+                <>
+                    <BoardHead name={`병원 리뷰`} email={`병원 리뷰를 적는 공간입니다.`}></BoardHead>
+                </> :
+                <>
+                    <BoardHead name={`자유 게시판`} email={`자유롭게 소통하는 게시판입니다.`}></BoardHead>
+                    <CommunityList/>
+                </> }
             </BoardBoard>
         </SelectorContext.Provider>
     );
