@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import {tokenValid} from "../fetch";
 import BoardBoard from "../component/Board/BoardBoard";
 import BoardHead from "../component/Board/BoardHead";
@@ -6,6 +6,7 @@ import BoardSelector from "../component/Board/BoardSelector";
 import styled from "styled-components";
 import BoardMenuBar from "../component/Board/BoardMenuBar";
 import CommunityList from "../component/Board/Community/CommunityList";
+import CommunityAddButton from "../component/Board/Community/CommunityAddButton";
 
 
 
@@ -54,11 +55,14 @@ function Board() {
             </DivBox>
             <BoardBoard>
                 {selectedItem ?
+                    // 병원 리뷰 영역
                 <>
                     <BoardHead name={`병원 리뷰`} email={`병원 리뷰를 적는 공간입니다.`}></BoardHead>
                 </> :
+                    // 자유 게시판 영역
                 <>
                     <BoardHead name={`자유 게시판`} email={`자유롭게 소통하는 게시판입니다.`}></BoardHead>
+                    { (user.id !== 0) && <CommunityAddButton user={user}/>}
                     <CommunityList/>
                 </> }
             </BoardBoard>

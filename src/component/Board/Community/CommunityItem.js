@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {AiOutlineEye} from "react-icons/ai";
 
 const CommunityItemBlock = styled.div`
 
@@ -18,24 +17,32 @@ const CommunityItemBlock = styled.div`
   }
 
   .itemTitle {
-    width: 400px;
+    width: 350px;
     padding-left: 20px;
   }
 
   .itemView {
-    width: 116px;
-    text-align: center;
+    padding-right: 10px;
+    width: 166px;
+    text-align: right;
+  }
+  
+  
+
+  strong {
+    color: #99c920;
   }
 `;
 
-function CommunityItem({itemId, itemTitle, itemView}) {
+function CommunityItem({id, classN, itemId, itemTitle, itemName, itemCompany}) {
     return (
         <CommunityItemBlock>
-            <div className="itemHeader">
+            <div id={id} className={`itemHeader ${classN}`}>
                 <div className="itemId">{itemId}</div>
                 <div className="itemTitle">{itemTitle}</div>
-                <div className="itemView"><AiOutlineEye
-                    style={{ display: 'inline-block', verticalAlign: 'middle' }} width="100" height="100"/>&nbsp;{itemView}</div>
+                <div className="itemView">
+                    <strong>{itemCompany}</strong> {itemName}
+                </div>
             </div>
         </CommunityItemBlock>
     );
