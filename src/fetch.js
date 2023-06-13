@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:8000/api/v1';
-const BOARD_BASE_URL = 'http://localhost:8001/api/v1';
+const API_BASE_URL = 'http://10.0.20.205/api/v1';
+const BOARD_BASE_URL = 'http://10.0.20.205/api/board';
+const HOSPITAL_BASE_URL = 'http://10.0.20.205/api/company'
 
 // API
 export const authenticate = (code) => {
@@ -31,4 +32,21 @@ export const boardSelect = (page, searchKeyword) => {
 
 export const boardCreate = (body) => {
     return axios.post(`${BOARD_BASE_URL}/board/write`, body)
+}
+
+// HOSPITAL
+export const companyList = (page) => {
+    return axios.get(`${HOSPITAL_BASE_URL}/company/list?page=${page}`)
+}
+
+export const companyReviewCreate = (body) => {
+    return axios.post(`${HOSPITAL_BASE_URL}/review/new`, body)
+}
+
+export const companyReviewList = (companyId) => {
+    return axios.get(`${HOSPITAL_BASE_URL}/review/${companyId}`)
+}
+
+export const companyFindName = (companyName) => {
+    return axios.get(`${HOSPITAL_BASE_URL}/company/find/${companyName}`)
 }

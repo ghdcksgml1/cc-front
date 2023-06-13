@@ -29,6 +29,14 @@ const CommunityAddButtonBlock = styled.div`
     color: red;
     background: none;
   }
+  
+  #modalHeader {
+    font-size: 24px;
+    font-weight: bold;
+    
+    margin-top: 30px;
+    margin-left: 30px;
+  }
 `;
 
 function CommunityAddButton({user}) {

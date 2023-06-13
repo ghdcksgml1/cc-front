@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import styled, {keyframes} from "styled-components";
 import {AiOutlineRight} from "react-icons/ai"
-import {register} from "../../fetch"
+import {companyList, register} from "../../fetch"
 
 
 const fadeIn = keyframes`
@@ -74,6 +74,7 @@ const RegisterListBlock = styled.div`
 function RegisterList() {
     const [company, setCompany] = useState('');
     const [isHovered, setIsHovered] = useState(false);
+    const [hospitalList, setHospitalList] = useState([]);
 
     const handleMouseEnter = () => {
         setIsHovered(true);
@@ -84,6 +85,9 @@ function RegisterList() {
     };
 
     useEffect(() => {
+        companyList(1)
+            .then((response) => { return response.data })
+            .then((content) => {setHospitalList(content)})
         const company = document.querySelector('#company');
         setCompany(company)
     }, []);
@@ -110,7 +114,6 @@ function RegisterList() {
         const text = e.target.innerText;
         company.value = text;
         const inputBox = document.querySelector('#inputBox');
-        // 이부분에 inputBox 배경이 깜빡이는 스타일을 넣어주고 싶어
         inputBox.style.animation = 'flash 0.2s';
         company.style.animation = 'flash 0.2s';
 
@@ -121,10 +124,11 @@ function RegisterList() {
         }, 700);
     };
 
+
     return (
         <RegisterListBlock>
             <div id="inputBox">
-                <input id="company" placeholder="회사명을 입력하세요." readOnly={true}/>
+                <input id="company" placeholder="병원명을 입력하세요." readOnly={true}/>
                 <AiOutlineRight
                     color={isHovered ? '#20c997' : 'black'}
                     size={20}
@@ -133,12 +137,11 @@ function RegisterList() {
                     onMouseLeave={handleMouseLeave}
                 />
             </div>
-
-            <div className="item" onClick={companyClick}>네이버</div>
-            <div className="item" onClick={companyClick}>카카오</div>
-            <div className="item" onClick={companyClick}>라인</div>
-            <div className="item" onClick={companyClick}>쿠팡</div>
-            <div className="item" onClick={companyClick}>배달의 민족</div>
+            {
+                hospitalList.map((hospital) => (
+                    <div className="item" onClick={companyClick}>{hospital.name}</div>
+                ))
+            }
         </RegisterListBlock>
     );
 }

@@ -18,7 +18,7 @@ const ModalBlock = styled.div`
 
     /* 모달창 디자인 */
     background-color: white;
-    border: 1px solid #20c997;
+    border: 2px solid #20c997;
     border-radius: 8px;
 
   /* 모달창 내부 X버튼 */
@@ -67,13 +67,17 @@ const ModalBlock = styled.div`
     margin-top: 20px;
     margin-left: 30px;
     background: whitesmoke;
-    width: 435px;
-    border: none;
+    width: 420px;
+    border: 1px solid #20c997;
+    border-radius: 8px;
+    
     font-size: 20px;
+    padding: 10px;
   }
 
   textarea {
     margin-bottom: 50px;
+    resize: none;
   }
   
   input, textarea:focus {
@@ -81,11 +85,11 @@ const ModalBlock = styled.div`
   }
 `;
 
-function Modal({setModalOpen, submit, children}) {
+function Modal({setModalOpen, submit, hidden, children}) {
     return (
         <ModalBlock>
             {children}
-            <button className="submit" onClick={() => submit()}>
+            <button className="submit" onClick={() => submit()} hidden={hidden === null}>
                 작성
             </button>
             <button className="close" onClick={() => setModalOpen(false)}>

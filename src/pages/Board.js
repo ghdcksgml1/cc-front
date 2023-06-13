@@ -7,6 +7,7 @@ import styled from "styled-components";
 import BoardMenuBar from "../component/Board/BoardMenuBar";
 import CommunityList from "../component/Board/Community/CommunityList";
 import CommunityAddButton from "../component/Board/Community/CommunityAddButton";
+import HospitalList from "../component/Board/Hospital/HospitalList";
 
 
 
@@ -58,6 +59,7 @@ function Board() {
                     // 병원 리뷰 영역
                 <>
                     <BoardHead name={`병원 리뷰`} email={`병원 리뷰를 적는 공간입니다.`}></BoardHead>
+                    <HospitalList user={user}/>
                 </> :
                     // 자유 게시판 영역
                 <>
